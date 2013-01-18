@@ -29,7 +29,6 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 		fluidTiles: true, 	// Adds extra space to each tile if extra space is in container
 		tilesPerRow: -1,
 		tiles: [{
-			margin: "0px",
 			backgroundColor: "white",
 			fontColor: "white",
 			panelBackgroundColor: "white",
@@ -217,8 +216,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 			}
 			if(!$tile.inlineStyle("margin-left")){
 				$tile.css("margin-left",options.margin);
-			}
-			
+			}			
 			if(!$tile.inlineStyle("margin-top")){
 				$tile.css("margin-top",options.margin);
 			}
