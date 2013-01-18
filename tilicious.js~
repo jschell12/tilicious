@@ -188,7 +188,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 				$tile.append(_topBarSlider);	
 				$tile.find(".tile-topbar").hide();
 			}
-			if(options.leftPanel && !$tile.hasClass("tile-leftbar")){			
+			if(options.leftPanel && !tile.!$tile.hasClass("tile-leftbar")){			
 				$tile.append(_leftBarSlider);
 				$tile.find(".tile-leftbar").hide();
 			}
