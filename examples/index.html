@@ -35,31 +35,31 @@
 
 		//Create tiles
 		for (var i = 0, len = numTiles; i < len; i++) {
-		tiles.push({
-						width: w_block,
-						height: h_block,
-						fontColor: "#FBC92A",
-						backgroundColor: "#666",
-						headerTitle: "Name or Title Here.",
-						content: "", //html or any string here
-						footerTitle: "Category",
-						slideMenu: {
-								topBarSlider: null,
-								leftBarSlider: null,
-								rightBarSlider: null,
-								bottomBarSlider: null
-						},
-						/*pics: [{
-								alt: "beach1",
-								src: "http://cloud.github.com/downloads/malsup/cycle/beach1.jpg"
-						}, {
-								alt: "beach2",
-								src: "http://cloud.github.com/downloads/malsup/cycle/beach2.jpg"
-						}, {
-								alt: "beach3",
-								src: "http://cloud.github.com/downloads/malsup/cycle/beach3.jpg"
-						}]*/
-				});
+			tiles.push({
+				width: w_block,
+				height: h_block,
+				fontColor: "#FBC92A",
+				backgroundColor: "#666",
+				headerTitle: "Name or Title Here.",
+				content: "", //html or any string here
+				footerTitle: "Category",
+				slideMenu: {
+						topBarSlider: null,
+						leftBarSlider: null,
+						rightBarSlider: null,
+						bottomBarSlider: null
+				},
+				/*pics: [{
+						alt: "beach1",
+						src: "http://cloud.github.com/downloads/malsup/cycle/beach1.jpg"
+				}, {
+						alt: "beach2",
+						src: "http://cloud.github.com/downloads/malsup/cycle/beach2.jpg"
+				}, {
+						alt: "beach3",
+						src: "http://cloud.github.com/downloads/malsup/cycle/beach3.jpg"
+				}]*/
+			});
 		}
 
 		//Initiate tilicous plugin
@@ -68,10 +68,9 @@
 				tileHeight: '230px',
 				tilesPerRow: 0,
 				tiles: tiles,
-				margin:"1px"
+				margin:"10px"
 		});
 	});
-
   </script>
 
   <title>Tilicious</title>
@@ -80,7 +79,7 @@
 <body>
   <div id="tilicious-demo">
     <div class="tilicious-tile tilicious-tile-idle" style=
-    "height: 230px; width: 230px; color: rgb(251, 201, 42); background-color: rgb(102, 102, 102); overflow: hidden; background-position: initial initial; background-repeat: initial initial;">
+    "margin-left: 10px; margin-top: 10px;height: 230px; width: 230px; color: rgb(251, 201, 42); background-color: rgb(102, 102, 102); overflow: hidden; background-position: initial initial; background-repeat: initial initial;">
     <div class="tile-topbar" style="display: none;"></div>
 
       <div class="tile-leftbar" style="display: none;"></div>

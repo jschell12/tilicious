@@ -29,6 +29,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 		fluidTiles: true, 	// Adds extra space to each tile if extra space is in container
 		tilesPerRow: -1,
 		tiles: [{
+			margin: "0px",
 			backgroundColor: "white",
 			fontColor: "white",
 			panelBackgroundColor: "white",
@@ -72,6 +73,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 		if(tileElements.length){
 			// Apply tile functionality
 			for ( var i = 0, len =  tileElements.length; i < tileElements.length; i++ ) {
+				tileElements[i].margin = options.margin;
 				var tile = new TiliciousTile( $(tileElements[i]), defaults.tiles[0] );
 				tileList.push(tile);
 			}
@@ -95,6 +97,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 	var _createTile = function($container, tile){
 		var $tile = $(_tile);				
 		$container.append($tile);
+		tile.margin = _options.margin;
 		return new TiliciousTile( $tile, tile);        
 	};    
 
@@ -124,7 +127,6 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
                 if (_isCloseToFilled(w_window, w_block, w_margin, i)) {
                     width = (w_block * i) + (w_margin * i);
                     _setTileContainerHorizontalWidth($container, width);
-					//$container.css("margin-left", (($(window).width() - $(".tilicious-container").width())/2)/w_margin);
                     break;
                 }
             }     
@@ -152,10 +154,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
         _init(element, this.options);
 	    $("body").find(".blocker").hide();
 		return {};
-	});
-	
-	
-	
+	});	
    
 	//Handles single tile
 	var TiliciousTile = (function( element, options ){
@@ -216,7 +215,13 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 			if(!$tile.inlineStyle("background")){
 				$tile.css("background",options.backgroundColor);
 			}
+			if(!$tile.inlineStyle("margin-left")){
+				$tile.css("margin-left",options.margin);
+			}
 			
+			if(!$tile.inlineStyle("margin-top")){
+				$tile.css("margin-top",options.margin);
+			}
 			$tile.css("overflow","hidden");    		
 			$tile.bind('mousedown', _handleMouseDownOnClick);
 			
