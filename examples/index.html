@@ -16,38 +16,39 @@
  <!-- <script type="text/javascript" src="C:/Users/jschell12/Documents/My%20Web%20Sites/JR_Auto_Upholstry/public/scripts/tilicious.js">
 </script>-->
 
-	<link rel="stylesheet" type="text/css" href="../styles/tilicious.css" />
+	<link rel="stylesheet" type="text/css" href="../css/tilicious.css" />
 	<script type="text/javascript" src="../libs/jquery.min.js"></script>
 	<script type="text/javascript" src= "../libs/jquery.cycle.lite.js"></script>
-	<script type="text/javascript" src="../tilicious.js"></script>
+	<script type="text/javascript" src="../src/tilicious.js"></script>
 
 
   <script>
 	jQuery(document).ready(function () {
 		var w_window = parseInt($(window).width(), 10);
-		var w_block = 230;
-		var tilesAcross = Math.floor(w_window / w_block);
+		var w_block = 100;
+		var tilesAcross = Math.floor(w_window / w_block) - 1;
 		var h_window = parseInt($(window).height(), 10);
-		var h_block = 230;
-		var tilesDown = Math.floor(h_window / h_block) + 1;
+		var h_block = 100;
+		var tilesDown = Math.floor(h_window / h_block) - 2;
+		
+		console.log("accross="+tilesAcross + " down=" + tilesDown);
 		var numTiles = Math.ceil(tilesAcross * tilesDown);
 		var tiles = [];
 
 		//Create tiles
 		for (var i = 0, len = numTiles; i < len; i++) {
-			tiles.push({
-				width: w_block,
-				height: h_block,
+			var tileOpts = {
 				fontColor: "#FBC92A",
 				backgroundColor: "#666",
-				headerTitle: "Name or Title Here.",
+				headerTitle: "Name or Title Here. " +  i,
 				content: "", //html or any string here
 				footerTitle: "Category",
 				
-				topPanel: null,
-				leftPanel: null,
-				rightPanel: null,
-				bottomPanel: null,
+				topPanel: false,
+				leftPanel: false,
+				rightPanel: false,
+				bottomPanel: false,
+				
 				
 				/*pics: [{
 						alt: "beach1",
@@ -59,14 +60,33 @@
 						alt: "beach3",
 						src: "http://cloud.github.com/downloads/malsup/cycle/beach3.jpg"
 				}]*/
-			});
+			};
+			
+			//Create various proportions
+			if(i % 4 == 0){
+				tileOpts.widthProportion = 1;
+				tileOpts.heightProportion = 1;
+			}else if(i % 4 == 1){
+				len--;
+				tileOpts.widthProportion = 2;
+				tileOpts.heightProportion = 1;
+			}else if(i % 4 == 2){
+				len -= 2;
+				tileOpts.widthProportion = 2;
+				tileOpts.heightProportion = 2;
+			}else {				
+				len--;
+				tileOpts.widthProportion = 1;
+				tileOpts.heightProportion = 2;
+			}
+			tiles.push(tileOpts);
 		}
 
 		//Initiate tilicous plugin
 		var $tilicious = $("#tilicious-demo").tilicious({
-				tileWidth: '230px',
-				tileHeight: '230px',
-				tilesPerRow: 0,
+				disableTilt: false,
+				baseTileWidth: w_block,
+				baseTileHeight: h_block,
 				tiles: tiles,
 		});
 	});
@@ -77,13 +97,13 @@
 
 <body>
   <div id="tilicious-demo">
-    <div class="tilicious-tile tilicious-tile-idle" style=
-    "margin-left: 10px; margin-top: 10px;height: 230px; width: 230px; color: rgb(251, 201, 42); background-color: rgb(102, 102, 102); overflow: hidden; background-position: initial initial; background-repeat: initial initial;">
+  <div class="tilicious-tile tilicious-tile-idle" style=
+    "margin-left: 10px; margin-top: 10px;color: rgb(251, 201, 42); background-color: rgb(102, 102, 102); overflow: hidden; background-position: initial initial; background-repeat: initial initial;">
     <div class="tile-topbar" style="display: none;"></div>
 
       <div class="tile-leftbar" style="display: none;"></div>
 
-      <div class="tile-rightbar" style="display: block; height: 230px; right: 0px;"></div>
+      <div class="tile-rightbar" style="display: none;"></div>
 
       <div class="tile-bottombar" style="display: none;"></div>
 
@@ -95,8 +115,28 @@
         Category
       </div>
 
-      <div class="pic-container"><img class="pic" src="" alt="" style="height: 230px; width: 230px;" /></div>
+      <div class="pic-container"><img class="pic" src="" alt=""  /></div>
     </div>
   </div>
 </body>
 </html>
+  <!-- <div class="tilicious-tile tilicious-tile-idle" style=
+    "margin-left: 10px; margin-top: 10px;color: rgb(251, 201, 42); background-color: rgb(102, 102, 102); overflow: hidden; background-position: initial initial; background-repeat: initial initial;">
+    <div class="tile-topbar" style="display: none;"></div>
+
+      <div class="tile-leftbar" style="display: none;"></div>
+
+      <div class="tile-rightbar" style="display: none;"></div>
+
+      <div class="tile-bottombar" style="display: none;"></div>
+
+      <div class="header-title">
+        Name or Title Here.
+      </div>
+
+      <div class="footer-title">
+        Category
+      </div>
+
+      <div class="pic-container"><img class="pic" src="" alt=""  /></div>
+    </div> -->

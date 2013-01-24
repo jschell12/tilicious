@@ -1,0 +1,207 @@
+div.tilicious-container {
+    vertical-align: top;
+    font-family: 'Lato', Helvetica, sans-serif;
+    line-height: 28px;
+    font-size: 16px;
+    color: #333;
+    font-weight: lighter;
+    /* For IE 7 */
+    zoom: 1;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    margin: 0 auto;
+    height: 100%;
+    display: block;
+	position: relative;
+}
+
+
+div.tilicious-tile {
+    overflow-y: hidden;
+    display: block;
+	padding: 0px;
+    margin: 0px;
+    text-align: left;
+    font-weight: normal;
+    text-transform: uppercase;
+    transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%; /* IE 9 */
+    -webkit-transform-origin: 50% 50%; /* Safari and Chrome */
+    -moz-transform-origin: 50% 50%; /* Firefox */
+    -o-transform-origin: 50% 50%; /* Opera */
+    transition: transform 0.08s;
+    -webkit-transition: -webkit-transform 0.08s; /* Safari and Chrome */
+    -moz-transition: -moz-transform 0.08s; /* Firefox */
+    -o-transition: -o-transform 0.08s; /* Opera */
+    outline: 1px solid transparent;
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+    background-color: #fff;
+    color: #fff;
+	/*float:left;*/
+}
+
+.tilicious-float-left{
+	float: left;
+}
+
+.tilicious-float-right{
+	float: right;
+}
+
+@media only screen and (max-width: 480px) {
+
+    div.tilicious-tile {    
+        overflow-y: hidden;
+        display: block;
+        float: left;
+        padding: 0px;
+        text-align: left;
+        font-weight: normal;
+        text-transform: uppercase;
+        transform-origin: 50% 50%;
+        -ms-transform-origin: 50% 50%; /* IE 9 */
+        -webkit-transform-origin: 50% 50%; /* Safari and Chrome */
+        -moz-transform-origin: 50% 50%; /* Firefox */
+        -o-transform-origin: 50% 50%; /* Opera */
+        transition: transform 0.08s;
+        -webkit-transition: -webkit-transform 0.08s; /* Safari and Chrome */
+        -moz-transition: -moz-transform 0.08s; /* Firefox */
+        -o-transition: -o-transform 0.08s; /* Opera */
+        outline: 1px solid transparent;
+        -webkit-font-smoothing: antialiased;
+        margin: 5px !important;
+        cursor: pointer;
+        background-color: #fff;
+        color: #fff;
+    }
+
+   
+}
+
+
+
+div.header-title {
+    position: absolute;
+    top: 0px;
+    font-size: 16px;
+    left: 0px;
+    width: 100%;
+    padding: 0px 6px 0px 6px;
+    z-index: 110;
+}
+
+div.footer-title {
+    position: absolute;
+    bottom: 0px;
+    font-size: 12px;
+    left: 0px;
+    width: 100%;
+    padding: 0px 0px 0px 6px;
+    z-index: 110;
+}
+
+
+div.tile-center {
+    position: absolute;
+}
+
+div.tile-topbar {
+    height: 50px;
+    position: absolute;
+    z-index: 100;
+    background: #fff;
+    color: #fff;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+div.tile-bottombar {
+    height: 50px;
+    position: absolute;
+    z-index: 100;
+    background: #fff;
+    color: #fff;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+div.tile-leftbar {
+    width: 50px;
+    position: absolute;
+    z-index: 100;
+    background: #fff;
+    color: #fff;
+    float: left;
+    top: 0;
+    bottom: 0;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+div.tile-rightbar {
+    width: 50px;
+    position: absolute;
+    z-index: 100;
+    background: #fff;
+    color: #fff;
+    float: right;
+    top: 0;
+    bottom: 0;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+
+
+
+div.tilicious-tile-idle {
+    -webkit-transform: perspective( 800px ) rotateX( 0deg ) rotateY( 0deg ) translateZ( 0px );
+    -moz-transform: perspective( 800px ) rotateX( 0deg ) rotateY( 0deg ) translateZ( 0px );
+    -ms-transform: perspective( 800px ) rotateX( 0deg ) rotateY( 0deg ) translateZ( 0px );
+    -o-transform: perspective( 800px ) rotateX( 0deg ) rotateY( 0deg ) translateZ( 0px );
+    transform: perspective( 800px ) rotateX( 0deg ) rotateY( 0deg ) translateZ( 0px );
+}
+
+div.tilicious-tile-toggle-top {
+    -webkit-transform: perspective( 800px ) rotateX( 20deg ) rotateY( 0deg ) translateZ( 0px );
+    -moz-transform: perspective( 800px ) rotateX( 20deg ) rotateY( 0deg ) translateZ( 0px );
+    -ms-transform: perspective( 800px ) rotateX( 20deg ) rotateY( 0deg ) translateZ( 0px );
+    -o-transform: perspective( 800px ) rotateX( 20deg ) rotateY( 0deg ) translateZ( 0px );
+    transform: perspective( 800px ) rotateX( 20deg ) rotateY( 0deg ) translateZ( 0px );
+}
+
+div.tilicious-tile-toggle-bottom {
+    -webkit-transform: perspective( 800px ) rotateX( -20deg ) rotateY( 0deg ) translateZ( 0px );
+    -moz-transform: perspective( 800px ) rotateX( -20deg ) rotateY( 0deg ) translateZ( 0px );
+    -ms-transform: perspective( 800px ) rotateX( -20deg ) rotateY( 0deg ) translateZ( 0px );
+    -o-transform: perspective( 800px ) rotateX( -20deg ) rotateY( 0deg ) translateZ( 0px );
+    transform: perspective( 800px ) rotateX( -20deg ) rotateY( 0deg ) translateZ( 0px );
+}
+
+div.tilicious-tile-toggle-left {
+    -webkit-transform: perspective( 800px ) rotateX( 0deg ) rotateY( -20deg ) translateZ( 0px );
+    -moz-transform: perspective( 800px ) rotateX( 0deg ) rotateY( -20deg ) translateZ( 0px );
+    -ms-transform: perspective( 800px ) rotateX( 0deg ) rotateY( -20deg ) translateZ( 0px );
+    -o-transform: perspective( 800px ) rotateX( 0deg ) rotateY( -20deg ) translateZ( 0px );
+    transform: perspective( 800px ) rotateX( 0deg ) rotateY( -20deg ) translateZ( 0px );
+}
+
+div.tilicious-tile-toggle-right {
+    -webkit-transform: perspective( 800px ) rotateX( 0deg ) rotateY( 20deg ) translateZ( 0px );
+    -webkit-transform: perspective( 800px ) rotateX( 0deg ) rotateY( 20deg ) translateZ( 0px );
+    -moz-transform: perspective( 800px ) rotateX( 0deg ) rotateY( 20deg ) translateZ( 0px );
+    -ms-transform: perspective( 800px ) rotateX( 0deg ) rotateY( 20deg ) translateZ( 0px );
+    -o-transform: perspective( 800px ) rotateX( 0deg ) rotateY( 20deg ) translateZ( 0px );
+    transform: perspective( 800px ) rotateX( 0deg ) rotateY( 20deg ) translateZ( 0px );
+}
+
+div.tilicious-tile-toggle-center {
+    -webkit-transform: perspective( 800px ) rotateX( 0deg ) rotateY( 0deg ) translateZ( -30px );
+    -moz-transform: perspective( 800px ) rotateX( 0deg ) rotateY( 0deg ) translateZ( -30px );
+    -ms-transform: perspective( 800px ) rotateX( 0deg ) rotateY( 0deg ) translateZ( -30px );
+    -o-transform: perspective( 800px ) rotateX( 0deg ) rotateY( 0deg ) translateZ( -30px );
+    transform: perspective( 800px ) rotateX( 0deg ) rotateY( 0deg ) translateZ( -30px );
+}

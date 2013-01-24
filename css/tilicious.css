@@ -14,28 +14,14 @@ div.tilicious-container {
     margin: 0 auto;
     height: 100%;
     display: block;
+	position: relative;
+	margin-bottom:50px;
 }
 
-
-div.tilicious-row {
-    text-align: left;
-    clear: both;
-}
-
-
-
-div.tilicious-column {
-    transform-style: preserve-3d;
-    -ms-transform-style: preserve-3d; /* IE 9 */
-    -webkit-transform-style: preserve-3d; /* Safari and Chrome */
-    -moz-transform-style: preserve-3d; /* Firefox */
-    -o-transform-style: preserve-3d; /* Opera */
-}
 
 div.tilicious-tile {
     overflow-y: hidden;
     display: block;
-    float: left;
 	padding: 0px;
     margin: 0px;
     text-align: left;
@@ -55,6 +41,14 @@ div.tilicious-tile {
     cursor: pointer;
     background-color: #fff;
     color: #fff;
+}
+
+.tilicious-float-left{
+	float: left;
+}
+
+.tilicious-float-right{
+	float: right;
 }
 
 @media only screen and (max-width: 480px) {
@@ -90,6 +84,7 @@ div.tilicious-tile {
 
 
 div.header-title {
+	
     position: absolute;
     top: 0px;
     font-size: 16px;
@@ -97,6 +92,7 @@ div.header-title {
     width: 100%;
     padding: 0px 6px 0px 6px;
     z-index: 110;
+	line-height: 1.5;
 }
 
 div.footer-title {
@@ -107,6 +103,7 @@ div.footer-title {
     width: 100%;
     padding: 0px 0px 0px 6px;
     z-index: 110;
+	line-height: 1.5;
 }
 
 
@@ -211,27 +208,3 @@ div.tilicious-tile-toggle-center {
     -o-transform: perspective( 800px ) rotateX( 0deg ) rotateY( 0deg ) translateZ( -30px );
     transform: perspective( 800px ) rotateX( 0deg ) rotateY( 0deg ) translateZ( -30px );
 }
-.blocker
-{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: .5;
-    background-color: #000;
-    z-index: 1000;
-    overflow: auto;
-}
-.blocker div
-{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 5em;
-    height: 2em;
-    margin: -1em 0 0 -2.5em;
-    color: #fff;
-    font-weight: bold;
-}
-?
