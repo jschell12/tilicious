@@ -35,9 +35,11 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 		var _styleQueue = [];
 		var _columnHeightAccumList = [];
 		var _columnWidth = 0;
+		var _width = _$container.width();
+		var _height = _$container.height();
 		
 		var _arrangeTiles = function(){
-			var container_w = _$container.width();
+			var container_w = _width;
 			var tiles = _getTiles();
 			
 			// reset columns			
@@ -46,37 +48,26 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 			while (i--) {
 				_columnHeightAccumList.push( 0 );
 			}
-			// place each brick
+			// place each tile
 			for (var i=0, len = tiles.length; i < len; i++) {
-				$(tiles[i].el).css({ position: 'absolute' });
 				_positionTile( tiles[i] );
 			}
 			
-			var containerSize = {};
-			containerSize.height = Math.max.apply( Math, _columnHeightAccumList );
 			// process styleQueue
 			var obj;
-			var maxLeft = 0;//get farthest left position plus that last tiles width
 			for (i=0, len = _styleQueue.length; i < len; i++) {
-				obj = _styleQueue[i];
-				if((obj.style.left + obj.tile.width) > maxLeft){
-					maxLeft = obj.style.left + obj.tile.width;
-				}
+				obj = _styleQueue[i];				
 				obj.$el.css(obj.style);	
-				obj.$el.css("margin-left", 0);
-				
+				obj.$el.css("margin-left", 0);				
 			}
 			
-			// fit container to columns that have been used;
-			containerSize.width = maxLeft;		
-			_$container.css(containerSize);
-			
+			// fit container to columns that have been used;			
 			_styleQueue = [];
 		};
 		
 		var _calculateColumnCount = function(){
 			///<summary>Calculates number of columns that currently fit in container</summary>
-			var containerWidth = _$container.width();
+			var containerWidth = _width;
 			var columnWidth = _options.baseTileWidth + parseInt(_options.margin, 10);
 			_columnWidth = columnWidth;
 			var columnCount = Math.floor((containerWidth + parseInt(_options.margin, 10)) / columnWidth );
@@ -89,13 +80,11 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 			_$container.append($tile);
 			tileOptions.margin = _options.margin;
 			return new TiliciousTile( $tile, _options, tileOptions);        
-		}; 
+		};
 		
 		var _getTiles = function(){
 			return _$container.data("tiles");
 		};
-		
-		
 		
 		var _handleResize = function(){						
 			_resizing = true;
@@ -118,10 +107,8 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 		var _init = function() {
 			var tileOptsList = _options.tiles;
 			var tileList = [];
-			
-			//Add container class to element
-			_$container.addClass("tilicious-container");			
-			
+			// Add container class to element
+			_$container.addClass("tilicious-container");
 			// Find all tile elements that are already in the element container
 			var tileElements = _$container.find(".tilicious-tile");
 			if(tileElements.length){
@@ -196,10 +183,10 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 			// apply setHeight to necessary columns
 			var setHeight = minimumY + $tile.outerHeight(true),
 			setSpan = _columnCount + 1 - len;
+
 			for ( i=0; i < setSpan; i++ ) {
 				_columnHeightAccumList[ shortCol + i ] = setHeight;
 			}
-			
 		};
 		
 		
@@ -221,8 +208,6 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 			if (_columnCount !== previousColumnCount ) {
 				_arrangeTiles();
 			}
-			
-			
 		};
 		
 		var _rotateTile = function(tile){
@@ -244,22 +229,22 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 			var w_window = $(window).width();
 			var w_block = parseInt(_options.baseTileWidth, 10);
 			var w_margin = parseInt(_options.margin, 10);
-			var width = w_block;
+			_width = w_block;
 
 			if(w_window <= (w_block + w_margin)){
-				_$container.width(width);
+				_$container.width(_width);
 			}else if((w_window >= ((w_block * length) + (w_margin * length)))){            
-				width = (w_block * (length) + (w_margin * length));
-				_$container.width(width);
+				_width = (w_block * (length) + (w_margin * length));
+				_$container.width(_width);
 			}else{        
 				for(var i = 0, len = length; i < len; i++){                  
 					if (_isCloseToFilled(w_window, w_block, w_margin, i)) {
-						width = (w_block * i) + (w_margin * (i+1));
-						_$container.width(width);
+						_width = (w_block * i) + (w_margin * (i-1));
+						_$container.width(_width);
 						break;
 					}
-				}     
-			}       
+				}
+			}			
 		};
 		
         _init();		
@@ -419,7 +404,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 			}
 			
 			//Add pic cycling capabilities with jquery.cycle.lite.js plugin
-			_picCycler(_options);
+			_picCycler();
 		};
 		
 		var _picCycler  = function(){
@@ -431,16 +416,25 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 
 			var picContainer = document.createElement("div");            
 			picContainer.className = "pic-container";       
-			_$.append(picContainer);	
+			_$tile.append(picContainer);	
 
 			for(var i = 0, len = _options.pics.length; i < len; i++){
 				var pic = document.createElement("img");
 				pic.className = "pic";
 				pic.setAttribute('src', _options.pics[i].src);
 				pic.setAttribute('alt', _options.pics[i].alt);
-				$(pic).height(_options.height);
-				$(pic).width(_options.width);            
-				$(picContainer).append($(pic)  );		    
+				
+				if(_options.widthProportion > _options.heightProportion){
+					$(pic).height(_width);
+					$(pic).width(_width);            
+				}else if(_options.heightProportion > _options.widthProportion){
+					$(pic).height(_height);
+					$(pic).width(_height);				
+				}else{
+					$(pic).height(_height);
+					$(pic).width(_width);
+				}
+				$(picContainer).append($(pic));		    
 			}
 			_$tile.find(".pic-container").cycle(
 				_slide(_options.picsTransition,

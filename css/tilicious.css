@@ -15,11 +15,11 @@ div.tilicious-container {
     height: 100%;
     display: block;
 	position: relative;
-	margin-bottom:50px;
 }
 
 
 div.tilicious-tile {
+	position: absolute;
     overflow-y: hidden;
     display: block;
 	padding: 0px;
@@ -41,6 +41,7 @@ div.tilicious-tile {
     cursor: pointer;
     background-color: #fff;
     color: #fff;
+	float: left;
 }
 
 .tilicious-float-left{
